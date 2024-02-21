@@ -13,12 +13,12 @@ const ARRAYNUM = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const ARRAYSIGN = ["+", "-", "*", "/"];
 
 // TEST.addEventListener("click", () => {
-// 	console.log(`
-//     currval = ${currVall},
-//     prevValue = ${prevValue},
-//     operator = ${operator},
+//     console.log(`
+//         currValue : ${currVall},
+//         prevValue : ${prevValue},
+//         operator : ${operator}
 //     `);
-// });
+// })
 
 function add(a, b) {
 	let result = a + b;
@@ -46,8 +46,10 @@ function operate(operator, num1, num2) {
 			return add(num1, num2);
 		case "-":
 			return substract(num1, num2);
-		case "*":
+		case "x":
 			return multiply(num1, num2);
+        case "*":
+            return multiply(num1, num2);
 		case "/":
 			if (num2 == 0) {
 				currVall = null;
