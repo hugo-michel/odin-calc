@@ -1,9 +1,19 @@
-let num1;
-let num2;
-let operator;
-let displayValue = 0;
+const TEST = document.querySelector("#test");
+let currVall = null;
+let prevValue = null;
+let operator = null;
 const DISPLAY = document.querySelector("#display");
 const NUMBERS = document.querySelectorAll(".number");
+const OPERATOR = document.querySelectorAll(".sign");
+const RESULT = document.querySelector("#result");
+
+TEST.addEventListener("click", () => {
+	console.log(`
+    currval = ${currVall},
+    prevValue = ${prevValue},
+    operator = ${operator},
+    `);
+});
 
 function add(a, b) {
 	return a + b;
@@ -36,10 +46,34 @@ function operate(operator, num1, num2) {
 	}
 }
 
+//afficahge nombre selectionné
 NUMBERS.forEach((number) => {
 	number.addEventListener("click", () => {
 		let input = number.textContent;
-		displayValue === 0 ? (displayValue = input) : (displayValue += input);
-		DISPLAY.textContent = displayValue;
+		currVall === null ? (currVall = input) : (currVall += input);
+		DISPLAY.textContent = currVall;
 	});
+});
+
+//s'il y a un nb precedent (deja tapé 1 nb + 1 operateur) => fait le alcul operate(), sinon prevalue = curvalue
+OPERATOR.forEach((sign) => {
+	sign.addEventListener("click", () => {
+		if (!prevValue) {
+			prevValue = currVall;
+			currVall = null;
+		} else {
+			let result = operate(operator, Number(prevValue), Number(currVall));
+			DISPLAY.textContent = result;
+			prevValue = result;
+			currVall = null;
+		}
+        operator = sign.textContent;
+	});
+});
+
+RESULT.addEventListener("click", () => {
+	let result = operate(operator, Number(prevValue), Number(currVall));
+	DISPLAY.textContent = result;
+	prevValue = result;
+	currVall = null;
 });
