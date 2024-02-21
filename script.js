@@ -45,6 +45,11 @@ function operate(operator, num1, num2) {
 		case "*":
 			return multiply(num1, num2);
 		case "/":
+            if (num2 == 0) { 
+                currVall = null;
+                prevValue = null;
+                return "LOL";
+            }
 			return divide(num1, num2);
 		default:
 			return "ERROR";
@@ -76,6 +81,7 @@ OPERATOR.forEach((sign) => {
 	});
 });
 
+//btn =
 RESULT.addEventListener("click", () => {
 	if (currVall && prevValue && operator) {
 		let result = operate(operator, Number(prevValue), Number(currVall));
@@ -85,6 +91,7 @@ RESULT.addEventListener("click", () => {
 	}
 });
 
+//btn clear
 CLEAR.addEventListener("click", () => {
 	currVall = null;
 	prevValue = null;
