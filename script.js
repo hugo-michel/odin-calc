@@ -7,6 +7,7 @@ const NUMBERS = document.querySelectorAll(".number");
 const OPERATOR = document.querySelectorAll(".sign");
 const RESULT = document.querySelector("#result");
 const CLEAR = document.querySelector("#clear");
+const CLEARLAST = document.querySelector("#clearLast");
 const POINT = document.querySelector("#point");
 
 TEST.addEventListener("click", () => {
@@ -109,3 +110,10 @@ CLEAR.addEventListener("click", () => {
 	operator = null;
     DISPLAY.textContent = "0";
 });
+
+//btn clear last
+CLEARLAST.addEventListener("click", () => {
+    let correction = currVall.slice(0, -1);
+    currVall = correction;
+    DISPLAY.textContent = currVall;
+})
