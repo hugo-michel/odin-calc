@@ -11,6 +11,7 @@ const CLEARLAST = document.querySelector("#clearLast");
 const POINT = document.querySelector("#point");
 const ARRAYNUM = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const ARRAYSIGN = ["+", "-", "*", "/"];
+const SIGNSPECIAL = document.querySelector(".signSpecial");
 
 // TEST.addEventListener("click", () => {
 //     console.log(`
@@ -48,8 +49,8 @@ function operate(operator, num1, num2) {
 			return substract(num1, num2);
 		case "x":
 			return multiply(num1, num2);
-        case "*":
-            return multiply(num1, num2);
+		case "*":
+			return multiply(num1, num2);
 		case "/":
 			if (num2 == 0) {
 				currVall = null;
@@ -121,9 +122,18 @@ CLEARLAST.addEventListener("click", () => {
 	DISPLAY.textContent = currVall;
 });
 
+//function pour toggle active sur element au clavier
+function inputIsActive(str) {
+	str.classList.toggle("active");
+	setTimeout(() => {
+		str.classList.toggle("active");
+	}, 100);
+}
+
 //support clavier (uniquement pavé num). Toutes les fonctionnalités sauf clear all (quelle touche ??)
 document.addEventListener("keydown", (event) => {
 	if (event.key === ".") {
+		inputIsActive(POINT);
 		let test = currVall.includes(".");
 		if (!test) {
 			let input = ".";
@@ -136,9 +146,25 @@ document.addEventListener("keydown", (event) => {
 		let input = event.key;
 		currVall === null ? (currVall = input) : (currVall += input);
 		DISPLAY.textContent = currVall;
+
+		NUMBERS.forEach((number) => {
+			if (number.textContent === event.key) {
+				inputIsActive(number);
+			}
+		});
 	}
 
 	if (ARRAYSIGN.includes(event.key)) {
+		OPERATOR.forEach((operator) => {
+			if (operator.textContent === event.key) {
+				inputIsActive(operator);
+			}
+		});
+
+		if (event.key === "*") {
+			inputIsActive(SIGNSPECIAL);
+		}
+
 		if (!prevValue) {
 			prevValue = currVall;
 			currVall = null;
@@ -152,13 +178,17 @@ document.addEventListener("keydown", (event) => {
 	}
 
 	if (event.key === "Enter") {
-		let result = operate(operator, Number(prevValue), Number(currVall));
-		DISPLAY.textContent = result;
-		prevValue = result;
-		currVall = null;
+		inputIsActive(RESULT);
+		if (currVall && prevValue && operator) {
+			let result = operate(operator, Number(prevValue), Number(currVall));
+			DISPLAY.textContent = result;
+			prevValue = result;
+			currVall = null;
+		}
 	}
 
 	if (event.key === "Backspace") {
+		inputIsActive(CLEARLAST);
 		let correction = currVall.slice(0, -1);
 		currVall = correction;
 		DISPLAY.textContent = currVall;
