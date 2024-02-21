@@ -6,6 +6,7 @@ const DISPLAY = document.querySelector("#display");
 const NUMBERS = document.querySelectorAll(".number");
 const OPERATOR = document.querySelectorAll(".sign");
 const RESULT = document.querySelector("#result");
+const CLEAR = document.querySelector("#clear");
 
 TEST.addEventListener("click", () => {
 	console.log(`
@@ -82,4 +83,11 @@ RESULT.addEventListener("click", () => {
 		prevValue = result;
 		currVall = null;
 	}
+});
+
+CLEAR.addEventListener("click", () => {
+	currVall = null;
+	prevValue = null;
+	operator = null;
+    DISPLAY.textContent = "0";
 });
