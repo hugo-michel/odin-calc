@@ -76,8 +76,10 @@ OPERATOR.forEach((sign) => {
 });
 
 RESULT.addEventListener("click", () => {
-	let result = operate(operator, Number(prevValue), Number(currVall));
-	DISPLAY.textContent = result;
-	prevValue = result;
-	currVall = null;
+	if (currVall && prevValue && operator) {
+		let result = operate(operator, Number(prevValue), Number(currVall));
+		DISPLAY.textContent = result;
+		prevValue = result;
+		currVall = null;
+	}
 });
