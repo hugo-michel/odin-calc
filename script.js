@@ -13,14 +13,6 @@ const ARRAYNUM = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const ARRAYSIGN = ["+", "-", "*", "/"];
 const SIGNSPECIAL = document.querySelector(".signSpecial");
 
-// TEST.addEventListener("click", () => {
-//     console.log(`
-//         currValue : ${currVall},
-//         prevValue : ${prevValue},
-//         operator : ${operator}
-//     `);
-// })
-
 function add(a, b) {
 	let result = a + b;
 	return Math.round(result * 1000000) / 1000000;
@@ -64,11 +56,24 @@ function operate(operator, num1, num2) {
 }
 
 //afficahge nombre selectionné
+// NUMBERS.forEach((number) => {
+// 	number.addEventListener("click", () => {
+// 		let input = number.textContent;
+// 		currVall === null ? (currVall = input) : (currVall += input);
+// 		DISPLAY.textContent = currVall;
+// 	});
+// });
 NUMBERS.forEach((number) => {
 	number.addEventListener("click", () => {
 		let input = number.textContent;
-		currVall === null ? (currVall = input) : (currVall += input);
-		DISPLAY.textContent = currVall;
+		if (prevValue && !operator) {
+			prevValue = null;
+			currVall === null ? (currVall = input) : (currVall += input);
+			DISPLAY.textContent = currVall;
+		} else {
+			currVall === null ? (currVall = input) : (currVall += input);
+			DISPLAY.textContent = currVall;
+		}
 	});
 });
 
@@ -87,13 +92,15 @@ OPERATOR.forEach((sign) => {
 		if (!prevValue) {
 			prevValue = currVall;
 			currVall = null;
-		} else if (currVall && prevValue) {
+		} else if (currVall && prevValue && operator) {
 			let result = operate(operator, Number(prevValue), Number(currVall));
 			DISPLAY.textContent = result;
 			prevValue = result;
 			currVall = null;
 		}
-		operator = sign.textContent;
+		if (prevValue) {
+			operator = sign.textContent;
+		}
 	});
 });
 
@@ -104,6 +111,7 @@ RESULT.addEventListener("click", () => {
 		DISPLAY.textContent = result;
 		prevValue = result;
 		currVall = null;
+		operator = null;
 	}
 });
 
@@ -144,8 +152,14 @@ document.addEventListener("keydown", (event) => {
 
 	if (ARRAYNUM.includes(event.key)) {
 		let input = event.key;
-		currVall === null ? (currVall = input) : (currVall += input);
-		DISPLAY.textContent = currVall;
+		if (prevValue && !operator) {
+			prevValue = null;
+			currVall === null ? (currVall = input) : (currVall += input);
+			DISPLAY.textContent = currVall;
+		} else {
+			currVall === null ? (currVall = input) : (currVall += input);
+			DISPLAY.textContent = currVall;
+		}
 
 		NUMBERS.forEach((number) => {
 			if (number.textContent === event.key) {
@@ -174,7 +188,9 @@ document.addEventListener("keydown", (event) => {
 			prevValue = result;
 			currVall = null;
 		}
-		operator = event.key;
+		if (prevValue) {
+			operator = event.key;
+		}
 	}
 
 	if (event.key === "Enter") {
@@ -184,6 +200,7 @@ document.addEventListener("keydown", (event) => {
 			DISPLAY.textContent = result;
 			prevValue = result;
 			currVall = null;
+			operator = null;
 		}
 	}
 
