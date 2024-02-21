@@ -56,9 +56,25 @@ body {
     flex-basis: 60%;
 }
 
-#clear,
-#numSpec {
+
+#numSpec,
+#zoneClear {
     flex-basis: 20%;
+}
+
+#zoneClear {
+    display: flex;
+}
+
+#clear {
+    flex-basis: 66%;
+    height: 100%;
+}
+
+#clearLast {
+    flex-basis: 33%;
+    height: 100%;
+
 }
 
 .number {
@@ -69,7 +85,9 @@ body {
 .number,
 #num0,
 .operator,
-#point {
+#point,
+#zoneClear,
+#clearLast {
     display: flex;
     justify-content: center;
     align-items: center;
