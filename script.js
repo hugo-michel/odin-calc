@@ -61,7 +61,7 @@ OPERATOR.forEach((sign) => {
 		if (!prevValue) {
 			prevValue = currVall;
 			currVall = null;
-		} else {
+		} else if (currVall && prevValue) {
 			let result = operate(operator, Number(prevValue), Number(currVall));
 			DISPLAY.textContent = result;
 			prevValue = result;
