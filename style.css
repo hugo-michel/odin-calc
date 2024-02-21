@@ -57,7 +57,7 @@ body {
 }
 
 #clear,
-#num0 {
+#numSpec {
     flex-basis: 20%;
 }
 
@@ -68,9 +68,22 @@ body {
 #clear,
 .number,
 #num0,
-.operator {
+.operator,
+#point {
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+}
+
+#numSpec {
+    display: flex;
+}
+
+#num0 {
+    flex-basis: 66%;
+}
+
+#point {
+    flex-basis: 33%;
 }
