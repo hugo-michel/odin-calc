@@ -12,13 +12,13 @@ const POINT = document.querySelector("#point");
 const ARRAYNUM = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const ARRAYSIGN = ["+", "-", "*", "/"];
 
-TEST.addEventListener("click", () => {
-	console.log(`
-    currval = ${currVall},
-    prevValue = ${prevValue},
-    operator = ${operator},
-    `);
-});
+// TEST.addEventListener("click", () => {
+// 	console.log(`
+//     currval = ${currVall},
+//     prevValue = ${prevValue},
+//     operator = ${operator},
+//     `);
+// });
 
 function add(a, b) {
 	let result = a + b;

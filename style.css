@@ -10,6 +10,9 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    font-family: "Electrolize", sans-serif;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 #calculator {
@@ -17,6 +20,9 @@ body {
     height: 600px;
     display: flex;
     flex-direction: column;
+    border: 10px solid black;
+    border-radius: 10px;
+    background-color: black;
 }
 
 #display {
@@ -24,7 +30,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    color: black;
+    font-size: 40px;
+    background-color: #bfbaac;
+    border-radius: 50px;
+    border: 10px solid black;
 
 }
 
@@ -48,6 +58,9 @@ body {
 
 .operator {
     flex-grow: 1;
+    background-color: #FF9F0A;
+    color: white;
+    border-radius: 50px;
 }
 
 #num19 {
@@ -86,12 +99,11 @@ body {
 #num0,
 .operator,
 #point,
-#zoneClear,
 #clearLast {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: 10px solid black;
 }
 
 #numSpec {
@@ -104,4 +116,18 @@ body {
 
 #point {
     flex-basis: 33%;
+}
+
+#clear,
+#clearLast {
+    background-color: #A5A5A5;
+    color: black;
+    border-radius: 50px;
+}
+
+.number,
+#point {
+    background-color: #333333;
+    color: white;
+    border-radius: 50px;
 }
