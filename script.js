@@ -16,19 +16,23 @@ TEST.addEventListener("click", () => {
 });
 
 function add(a, b) {
-	return a + b;
+	let result = a + b;
+	return Math.round(result * 1000000) / 1000000;
 }
 
 function substract(a, b) {
-	return a - b;
+	let result = a - b;
+	return Math.round(result * 1000000) / 1000000;
 }
 
 function multiply(a, b) {
-	return a * b;
+	let result = a * b;
+	return Math.round(result * 1000000) / 1000000;
 }
 
 function divide(a, b) {
-	return a / b;
+	let result = a / b;
+	return Math.round(result * 1000000) / 1000000;
 }
 
 function operate(operator, num1, num2) {
@@ -67,7 +71,7 @@ OPERATOR.forEach((sign) => {
 			prevValue = result;
 			currVall = null;
 		}
-        operator = sign.textContent;
+		operator = sign.textContent;
 	});
 });
 
