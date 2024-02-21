@@ -56,13 +56,6 @@ function operate(operator, num1, num2) {
 }
 
 //afficahge nombre selectionné
-// NUMBERS.forEach((number) => {
-// 	number.addEventListener("click", () => {
-// 		let input = number.textContent;
-// 		currVall === null ? (currVall = input) : (currVall += input);
-// 		DISPLAY.textContent = currVall;
-// 	});
-// });
 NUMBERS.forEach((number) => {
 	number.addEventListener("click", () => {
 		let input = number.textContent;
